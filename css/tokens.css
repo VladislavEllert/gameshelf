@@ -1,0 +1,69 @@
+/* Дизайн-токены: переменные из Figma (коллекции «GameShelf / Цвета» и «GameShelf / Размеры»).
+   Все остальные файлы берут цвета, отступы и шрифты только отсюда. */
+:root {
+  /* Фон и границы */
+  --color-bg-page: #0e1117;
+  --color-bg-surface: #161b26;
+  --color-bg-raised: #1f2635;
+  --color-border: #2a3245;
+  --color-border-accent: #3a4560;
+
+  /* Текст */
+  --color-text: #e8ecf4;
+  --color-text-secondary: #8b95a9;
+  --color-text-on-accent: #ffffff;
+
+  /* Акценты */
+  --color-accent: #7c5cff;
+  --color-accent-light: #a58bff;
+  --color-cyan: #22d3ee;
+
+  /* Статусы игр */
+  --color-status-progress: #3b82f6;
+  --color-status-planned: #f5b70a;
+  --color-status-done: #22c55e;
+
+  /* Отступы — кратны 8 px */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+
+  /* Скругления */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  /* Типографика — Inter, 11 текстовых стилей из Figma */
+  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-h1: 48px;
+  --fs-h2: 32px;
+  --fs-h3: 24px;
+  --fs-h4: 20px;
+  --fs-body: 16px;
+  --fs-text: 14px;
+  --fs-small: 12px;
+  --fs-caption: 11px;
+
+  /* Эффекты */
+  --shadow-glow: 0 4px 20px rgba(124, 92, 255, 0.45);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --gradient-accent: linear-gradient(90deg, var(--color-accent), var(--color-cyan));
+
+  /* Размеры раскладки */
+  --header-height: 64px;
+  --container-padding: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: var(--space-4);
+  }
+}

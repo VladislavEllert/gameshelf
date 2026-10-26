@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Статистика — GameShelf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">Game<span class="logo__accent">Shelf</span></a>
+      <button class="btn btn--secondary btn--sm header__menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu-toggle>Меню</button>
+      <a class="user" href="#">
+        <span class="avatar" aria-hidden="true"></span>
+        <span class="user__name">alex_plays</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a class="nav__link" href="index.html">Библиотека</a>
+        <a class="nav__link" href="wishlist.html">Желаемое</a>
+        <a class="nav__link is-active" href="stats.html" aria-current="page">Статистика</a>
+        <a class="nav__link nav__link--mobile" href="#">Профиль alex_plays</a>
+        <button class="btn btn--secondary nav__close" type="button" data-menu-toggle>Закрыть меню</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-head__title">Статистика</h1>
+        <p class="page-head__subtitle">Сводка по библиотеке · обновлено сегодня</p>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="panel">
+        <p class="metric__label">Всего игр</p>
+        <p class="metric__value">128</p>
+        <p class="metric__note">+6 за год</p>
+      </div>
+      <div class="panel">
+        <p class="metric__label">Пройдено</p>
+        <p class="metric__value">47</p>
+        <p class="metric__note">37% библиотеки</p>
+      </div>
+      <div class="panel">
+        <p class="metric__label">В процессе</p>
+        <p class="metric__value">9</p>
+        <p class="metric__note">3 запущены недавно</p>
+      </div>
+      <div class="panel">
+        <p class="metric__label">В планах</p>
+        <p class="metric__value">72</p>
+        <p class="metric__note">Следующая: Pentiment</p>
+      </div>
+      <div class="panel kpi--wide">
+        <p class="metric__label">Часов всего</p>
+        <p class="metric__value">2 486</p>
+        <p class="metric__note">+184 за 90 дней</p>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <section class="panel panel--lg stats-grid__top">
+        <h2 class="panel__title">Топ-10 по времени</h2>
+        <p class="panel__subtitle">Игровое время, часы</p>
+        <ul class="bars">
+          <li class="bar"><span>The Witcher 3</span><span class="bar__track"><span class="bar__fill" style="--value: 90%"></span></span><span class="bar__value">146 ч</span></li>
+          <li class="bar"><span>Baldur’s Gate 3</span><span class="bar__track"><span class="bar__fill" style="--value: 53%"></span></span><span class="bar__value">86 ч</span></li>
+          <li class="bar"><span>Hades</span><span class="bar__track"><span class="bar__fill" style="--value: 39%"></span></span><span class="bar__value">64 ч</span></li>
+          <li class="bar"><span>Hollow Knight</span><span class="bar__track"><span class="bar__fill" style="--value: 32%"></span></span><span class="bar__value">52 ч</span></li>
+          <li class="bar"><span>Disco Elysium</span><span class="bar__track"><span class="bar__fill" style="--value: 25%"></span></span><span class="bar__value">41 ч</span></li>
+          <li class="bar"><span>Frostpunk</span><span class="bar__track"><span class="bar__fill" style="--value: 23%"></span></span><span class="bar__value">37 ч</span></li>
+          <li class="bar"><span>Outer Wilds</span><span class="bar__track"><span class="bar__fill" style="--value: 17%"></span></span><span class="bar__value">28 ч</span></li>
+          <li class="bar"><span>Death Stranding</span><span class="bar__track"><span class="bar__fill" style="--value: 15%"></span></span><span class="bar__value">24 ч</span></li>
+          <li class="bar"><span>Cyberpunk 2077</span><span class="bar__track"><span class="bar__fill" style="--value: 7%"></span></span><span class="bar__value">12 ч</span></li>
+          <li class="bar"><span>Control</span><span class="bar__track"><span class="bar__fill" style="--value: 3%"></span></span><span class="bar__value">5 ч</span></li>
+        </ul>
+      </section>
+
+      <section class="panel panel--lg">
+        <h2 class="panel__title">Время по жанрам</h2>
+        <p class="panel__subtitle">Доля от общего времени</p>
+        <ul class="bars">
+          <li class="bar"><span>RPG</span><span class="bar__track"><span class="bar__fill" style="--value: 59%"></span></span><span class="bar__value">38 %</span></li>
+          <li class="bar"><span>Экшен</span><span class="bar__track"><span class="bar__fill" style="--value: 37%"></span></span><span class="bar__value">24 %</span></li>
+          <li class="bar"><span>Стратегии</span><span class="bar__track"><span class="bar__fill" style="--value: 25%"></span></span><span class="bar__value">16 %</span></li>
+          <li class="bar"><span>Приключения</span><span class="bar__track"><span class="bar__fill" style="--value: 22%"></span></span><span class="bar__value">14 %</span></li>
+          <li class="bar"><span>Другие</span><span class="bar__track"><span class="bar__fill" style="--value: 12%"></span></span><span class="bar__value">8 %</span></li>
+        </ul>
+      </section>
+
+      <section class="panel panel--lg">
+        <h2 class="panel__title">Статусы</h2>
+        <p class="panel__subtitle">Распределение 128 игр</p>
+        <div class="status-chart" role="img" aria-label="Пройдено 47, в процессе 9, в планах 72">
+          <span class="status-chart__part part--done" style="flex-grow: 47"></span>
+          <span class="status-chart__part part--progress" style="flex-grow: 9"></span>
+          <span class="status-chart__part part--planned" style="flex-grow: 72"></span>
+        </div>
+        <ul class="legend">
+          <li class="legend__item part--done"><span class="legend__dot"></span>Пройдено<span class="legend__count">47</span></li>
+          <li class="legend__item part--progress"><span class="legend__dot"></span>В процессе<span class="legend__count">9</span></li>
+          <li class="legend__item part--planned"><span class="legend__dot"></span>В планах<span class="legend__count">72</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <p class="stats-note">Статистика рассчитывается по данным Steam и пользовательским статусам GameShelf.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 GameShelf · данные Steam</div>
+  </footer>
+</body>
+</html>

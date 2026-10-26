@@ -1,0 +1,557 @@
+/* Раскладка конкретных страниц. Подход mobile-first: базовые правила — для телефона
+   (360 px), медиазапросы min-width добавляют раскладку планшета (768), ноутбука (1024)
+   и десктопа (1440). */
+
+/* ===================== Библиотека (index.html) ===================== */
+.library-tabs {
+  margin-top: var(--space-3);
+}
+
+.toolbar {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.library {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+/* Панель фильтров: на телефоне и планшете скрыта, открывается кнопкой «Фильтры» */
+.filters {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-self: start;
+}
+
+.filters.is-open {
+  display: flex;
+}
+
+.filters__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filters__reset {
+  border: 0;
+  background: none;
+  font-size: var(--fs-small);
+}
+
+.filters__reset:hover {
+  color: var(--color-accent-light);
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) 12px;
+}
+
+@media (min-width: 768px) {
+  .toolbar {
+    grid-template-columns: 1fr 240px auto;
+  }
+
+  .toolbar--wishlist {
+    grid-template-columns: 1fr 240px;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .toolbar {
+    grid-template-columns: 1fr 248px;
+  }
+
+  .toolbar__filters-btn {
+    display: none;
+  }
+
+  .library {
+    grid-template-columns: 224px 1fr;
+  }
+
+  /* На широком экране фильтры — всегда видимая боковая колонка */
+  .filters {
+    display: flex;
+  }
+}
+
+@media (min-width: 1440px) {
+  .game-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ===================== Карточка игры (game.html) ===================== */
+.breadcrumbs {
+  display: flex;
+  gap: var(--space-1);
+  padding-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.breadcrumbs a {
+  color: var(--color-text);
+}
+
+.breadcrumbs a:hover {
+  color: var(--color-accent-light);
+}
+
+.game {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.game__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.game__cover {
+  aspect-ratio: 3 / 4;
+}
+
+.game__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.game__title {
+  margin-top: var(--space-1);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.game__developer {
+  margin-top: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-body);
+}
+
+.game__props {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: var(--space-1) var(--space-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.game__props dt {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.game__props dd {
+  font-size: var(--fs-text);
+}
+
+.game__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1);
+}
+
+.game__section-title {
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+
+/* Переключатель «Мой статус»: три кнопки, выбранная залита цветом статуса */
+.status-switch {
+  display: grid;
+  gap: 4px;
+}
+
+.status-switch__btn {
+  min-height: 40px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-raised);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.status-switch__btn:hover {
+  color: var(--color-text);
+}
+
+.status-switch__btn[aria-pressed="true"] {
+  border-color: transparent;
+  color: var(--color-text-on-accent);
+  font-weight: 600;
+}
+
+.status-switch__btn[data-status="planned"][aria-pressed="true"] {
+  background-color: var(--color-status-planned);
+}
+
+.status-switch__btn[data-status="progress"][aria-pressed="true"] {
+  background-color: var(--color-status-progress);
+}
+
+.status-switch__btn[data-status="done"][aria-pressed="true"] {
+  background-color: var(--color-status-done);
+}
+
+.progress__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+  font-size: var(--fs-text);
+}
+
+.progress__value {
+  font-weight: 700;
+}
+
+.progress__track {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-raised);
+  overflow: hidden;
+}
+
+.progress__fill {
+  width: var(--value);
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--gradient-accent);
+}
+
+.game-details {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.game-details__text p + p {
+  margin-top: var(--space-2);
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.notes__saved {
+  color: var(--color-status-done);
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 768px) {
+  .game {
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-4);
+  }
+
+  .game__title {
+    font-size: 40px;
+  }
+
+  .game__props {
+    grid-template-columns: 136px 1fr;
+  }
+
+  .game__metrics {
+    gap: var(--space-2);
+  }
+
+  .status-switch {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .game-details {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .game {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .game__title {
+    font-size: var(--fs-h1);
+  }
+
+  .game__info .metric__value {
+    font-size: 26px;
+  }
+}
+
+/* ===================== Список желаемого (wishlist.html) ===================== */
+/* На телефоне — карточки, с 768 px — таблица. Одна и та же разметка, меняется только
+   CSS Grid: grid-template-areas раскладывает ячейки по-разному. */
+.wishlist-head {
+  display: none;
+}
+
+.wishlist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.wish-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  grid-template-areas:
+    "cover title"
+    "cover genre"
+    "cover date"
+    "cover rating"
+    "action action";
+  gap: 4px var(--space-2);
+  align-content: start;
+}
+
+.wish-item__cover {
+  grid-area: cover;
+  width: 80px;
+  height: 104px;
+  border-radius: var(--radius-md);
+}
+
+.wish-item__title {
+  grid-area: title;
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+
+.wish-item__genre {
+  grid-area: genre;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.wish-item__date {
+  grid-area: date;
+  font-size: var(--fs-small);
+}
+
+.wish-item__rating {
+  grid-area: rating;
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+
+.wish-item__action {
+  grid-area: action;
+  margin-top: var(--space-1);
+}
+
+.wishlist-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.empty--inline {
+  padding-block: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .wish-row,
+  .wish-item {
+    grid-template-columns: 64px minmax(0, 1fr) 128px 56px 152px;
+    column-gap: var(--space-2);
+  }
+
+  .wishlist-head {
+    display: grid;
+    margin-top: var(--space-3);
+    padding: var(--space-1) var(--space-2);
+    border-block: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: var(--fs-small);
+    font-weight: 600;
+  }
+
+  .wishlist {
+    gap: 4px;
+  }
+
+  .wish-item {
+    grid-template-areas:
+      "cover title date rating action"
+      "cover genre date rating action";
+    align-items: center;
+    row-gap: 2px;
+    border-radius: var(--radius-md);
+  }
+
+  .wish-item__cover {
+    width: 64px;
+    height: 80px;
+  }
+
+  .wish-item__title {
+    align-self: end;
+  }
+
+  .wish-item__genre {
+    align-self: start;
+  }
+
+  .wish-item__date {
+    font-size: var(--fs-text);
+  }
+
+  .wish-item__rating {
+    font-size: var(--fs-text);
+    text-align: center;
+  }
+
+  /* Подпись «Отзывы:» нужна только в мобильной карточке — в таблице есть заголовок */
+  .wish-item__rating-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .wish-item__action {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wish-row,
+  .wish-item {
+    grid-template-columns: 64px minmax(0, 1fr) 200px 72px 152px;
+  }
+}
+
+/* ===================== Статистика (stats.html) ===================== */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.kpis .metric__value {
+  font-size: var(--fs-h2);
+}
+
+.kpi--wide {
+  grid-column: 1 / -1;
+}
+
+.stats-grid {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.status-chart {
+  display: flex;
+  gap: 2px;
+  height: 40px;
+  margin-top: var(--space-2);
+}
+
+/* Ширина сегмента пропорциональна числу игр: style="flex-grow: 47" */
+.status-chart__part {
+  flex-basis: 0;
+  background-color: var(--status-color);
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: var(--space-2);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-text);
+}
+
+.legend__dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: var(--status-color);
+}
+
+.legend__count {
+  margin-left: auto;
+  font-weight: 700;
+}
+
+.part--done { --status-color: var(--color-status-done); }
+.part--progress { --status-color: var(--color-status-progress); }
+.part--planned { --status-color: var(--color-status-planned); }
+
+.stats-note {
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-caption);
+}
+
+@media (min-width: 768px) {
+  .kpis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats-grid__top {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .kpis {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .kpi--wide {
+    grid-column: auto;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+
+  .stats-grid__top {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+}

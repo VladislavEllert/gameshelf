@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Список желаемого — GameShelf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">Game<span class="logo__accent">Shelf</span></a>
+      <button class="btn btn--secondary btn--sm header__menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu-toggle>Меню</button>
+      <a class="user" href="#">
+        <span class="avatar" aria-hidden="true"></span>
+        <span class="user__name">alex_plays</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a class="nav__link" href="index.html">Библиотека</a>
+        <a class="nav__link is-active" href="wishlist.html" aria-current="page">Желаемое</a>
+        <a class="nav__link" href="stats.html">Статистика</a>
+        <a class="nav__link nav__link--mobile" href="#">Профиль alex_plays</a>
+        <button class="btn btn--secondary nav__close" type="button" data-menu-toggle>Закрыть меню</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-head__title">Список желаемого</h1>
+        <p class="page-head__subtitle">8 игр · данные обновлены сегодня</p>
+      </div>
+    </div>
+
+    <div class="toolbar toolbar--wishlist">
+      <label class="visually-hidden" for="wish-search">Поиск в желаемом</label>
+      <input class="field" id="wish-search" type="search" placeholder="Поиск в желаемом" autocomplete="off">
+      <label class="visually-hidden" for="wish-sort">Сортировка</label>
+      <select class="field" id="wish-sort">
+        <option value="added">По дате добавления</option>
+        <option value="title">По названию</option>
+        <option value="rating">По оценке</option>
+      </select>
+    </div>
+
+    <div class="wish-row wishlist-head" aria-hidden="true">
+      <span>Обложка</span>
+      <span>Игра</span>
+      <span>Дата выхода</span>
+      <span>Оценка</span>
+      <span>Действие</span>
+    </div>
+
+    <ul class="wishlist" data-wishlist>
+      <li class="panel wish-item" data-title="Hades II" data-rating="94">
+        <span class="cover cover--5 wish-item__cover"></span>
+        <h2 class="wish-item__title">Hades II</h2>
+        <p class="wish-item__genre">Рогалик, экшен</p>
+        <p class="wish-item__date">Уже доступна</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>94%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Hades%20II" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="Hollow Knight: Silksong" data-rating="92">
+        <span class="cover cover--6 wish-item__cover"></span>
+        <h2 class="wish-item__title">Hollow Knight: Silksong</h2>
+        <p class="wish-item__genre">Метроидвания</p>
+        <p class="wish-item__date">4 сентября 2025</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>92%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Hollow%20Knight%20Silksong" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="Frostpunk 2" data-rating="76">
+        <span class="cover cover--7 wish-item__cover"></span>
+        <h2 class="wish-item__title">Frostpunk 2</h2>
+        <p class="wish-item__genre">Стратегия, выживание</p>
+        <p class="wish-item__date">20 сентября 2024</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>76%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Frostpunk%202" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="S.T.A.L.K.E.R. 2" data-rating="81">
+        <span class="cover cover--8 wish-item__cover"></span>
+        <h2 class="wish-item__title">S.T.A.L.K.E.R. 2</h2>
+        <p class="wish-item__genre">Шутер, выживание</p>
+        <p class="wish-item__date">20 ноября 2024</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>81%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=STALKER%202" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="Citizen Sleeper 2" data-rating="91">
+        <span class="cover cover--1 wish-item__cover"></span>
+        <h2 class="wish-item__title">Citizen Sleeper 2</h2>
+        <p class="wish-item__genre">RPG, приключение</p>
+        <p class="wish-item__date">31 января 2025</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>91%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Citizen%20Sleeper%202" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="Avowed" data-rating="78">
+        <span class="cover cover--2 wish-item__cover"></span>
+        <h2 class="wish-item__title">Avowed</h2>
+        <p class="wish-item__genre">RPG, экшен</p>
+        <p class="wish-item__date">18 февраля 2025</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>78%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Avowed" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="The Alters" data-rating="88">
+        <span class="cover cover--3 wish-item__cover"></span>
+        <h2 class="wish-item__title">The Alters</h2>
+        <p class="wish-item__genre">Стратегия, приключение</p>
+        <p class="wish-item__date">13 июня 2025</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>88%</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=The%20Alters" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+      <li class="panel wish-item" data-title="Replaced" data-rating="0">
+        <span class="cover cover--4 wish-item__cover"></span>
+        <h2 class="wish-item__title">Replaced</h2>
+        <p class="wish-item__genre">Платформер, экшен</p>
+        <p class="wish-item__date">2026</p>
+        <p class="wish-item__rating"><span class="wish-item__rating-label">Отзывы: </span>—</p>
+        <a class="btn btn--secondary wish-item__action" href="https://store.steampowered.com/search/?term=Replaced" target="_blank" rel="noopener">Открыть в Steam</a>
+      </li>
+    </ul>
+
+    <div class="panel empty empty--inline" data-empty hidden>
+      <span class="empty__icon" aria-hidden="true">✕</span>
+      <h2 class="empty__title">Ничего не найдено</h2>
+      <p class="empty__text">В списке желаемого нет игр с таким названием.</p>
+    </div>
+
+    <div class="wishlist-footer">
+      <p data-wish-count>Показано 8 из 8 игр</p>
+      <button class="btn btn--secondary" type="button">Обновить список</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 GameShelf · данные Steam</div>
+  </footer>
+</body>
+</html>

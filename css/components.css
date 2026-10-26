@@ -1,0 +1,504 @@
+/* Компоненты — то же, что компоненты в Figma: шапка, подвал, кнопка, поле ввода,
+   таб, статус, карточка игры, панель, полоса графика. Используются на всех страницах. */
+
+/* ---------- Шапка ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  /* Первая строка — сама шапка, вторая (если меню открыто) — пункты меню */
+  grid-template-rows: var(--header-height);
+  align-items: center;
+}
+
+.logo {
+  justify-self: start;
+  font-size: var(--fs-h4);
+  font-weight: 700;
+}
+
+.logo__accent {
+  color: var(--color-accent);
+}
+
+.user {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-cyan));
+}
+
+.user__name {
+  display: none;
+}
+
+/* Кнопка «Меню» видна только до 1024 px */
+.header__menu-btn {
+  justify-self: center;
+}
+
+/* Мобильное меню: раскрывается под шапкой и сдвигает контент вниз */
+.nav {
+  display: none;
+  grid-column: 1 / -1;
+  flex-direction: column;
+  padding-bottom: var(--space-2);
+}
+
+.nav.is-open {
+  display: flex;
+}
+
+.nav__link {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--fs-text);
+}
+
+.nav__link.is-active {
+  font-weight: 600;
+}
+
+.nav__close {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .user__name {
+    display: inline;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* .header перед классом — чтобы правило было сильнее, чем display у .btn ниже */
+  .header .header__menu-btn,
+  .header .nav__link--mobile,
+  .header .nav__close {
+    display: none;
+  }
+
+  /* Меню встаёт в среднюю колонку шапки на место кнопки «Меню» */
+  .nav {
+    display: flex;
+    grid-row: 1;
+    grid-column: 2;
+    flex-direction: row;
+    gap: var(--space-3);
+    padding-bottom: 0;
+  }
+
+  .nav__link {
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  .nav__link:hover {
+    color: var(--color-accent-light);
+  }
+
+  .nav__link.is-active {
+    color: var(--color-accent-light);
+  }
+}
+
+/* ---------- Подвал ---------- */
+.footer {
+  margin-top: var(--space-4);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+  text-align: center;
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: none;
+  font-size: var(--fs-text);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: var(--color-text-on-accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-accent-light);
+}
+
+.btn--secondary {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-bg-raised);
+}
+
+.btn--sm {
+  min-height: 32px;
+  padding: 0 12px;
+  font-size: var(--fs-small);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* ---------- Поля ввода ---------- */
+.field {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-raised);
+  color: var(--color-text);
+  font-size: var(--fs-text);
+}
+
+.field::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.field:focus {
+  border-color: var(--color-accent);
+  outline: none;
+}
+
+/* Выпадающий список: своя стрелка вместо системной */
+select.field {
+  appearance: none;
+  padding-right: 28px;
+  text-overflow: ellipsis;
+  color: var(--color-text-secondary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%238b95a9' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+textarea.field {
+  min-height: 176px;
+  padding: var(--space-2);
+  background-color: var(--color-bg-page);
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+  cursor: pointer;
+}
+
+/* Свой вид чекбокса: тёмный квадрат с фиолетовой рамкой, при выборе — заливка */
+.checkbox input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  background-color: var(--color-bg-raised);
+  appearance: none;
+  cursor: pointer;
+}
+
+.checkbox input:checked {
+  background: var(--color-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l3 3 5-6' fill='none' stroke='white' stroke-width='1.6'/%3E%3C/svg%3E") no-repeat center;
+}
+
+/* ---------- Табы ---------- */
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border);
+  scrollbar-width: none;
+}
+
+.tab {
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-2);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-text);
+}
+
+.tab:hover {
+  color: var(--color-text);
+}
+
+.tab.is-active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ---------- Статус игры ---------- */
+.status {
+  --status-color: var(--color-status-progress);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background-color: color-mix(in srgb, var(--status-color) 18%, transparent);
+  color: var(--status-color);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status--planned {
+  --status-color: var(--color-status-planned);
+}
+
+.status--done {
+  --status-color: var(--color-status-done);
+}
+
+/* ---------- Обложки: 8 градиентов вместо картинок (настоящие придут из Steam в ЛР5) ---------- */
+.cover {
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--cover-from), var(--cover-to));
+}
+
+.cover--1 { --cover-from: #7c5cff; --cover-to: #22d3ee; }
+.cover--2 { --cover-from: #f43f5e; --cover-to: #7c3aed; }
+.cover--3 { --cover-from: #0ea5e9; --cover-to: #10b981; }
+.cover--4 { --cover-from: #f59e0b; --cover-to: #ef4444; }
+.cover--5 { --cover-from: #6366f1; --cover-to: #ec4899; }
+.cover--6 { --cover-from: #14b8a6; --cover-to: #3b82f6; }
+.cover--7 { --cover-from: #a855f7; --cover-to: #f97316; }
+.cover--8 { --cover-from: #22c55e; --cover-to: #0ea5e9; }
+
+/* ---------- Карточка игры ---------- */
+.game-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.game-card__cover {
+  aspect-ratio: 3 / 4;
+  margin-bottom: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.game-card:hover .game-card__cover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.game-card__title {
+  font-size: var(--fs-text);
+  font-weight: 700;
+}
+
+.game-card__meta {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.game-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 768px) {
+  .game-card__title {
+    font-size: var(--fs-body);
+  }
+}
+
+/* ---------- Панель (карточка-контейнер) ---------- */
+.panel {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.panel--lg {
+  padding: var(--space-3);
+}
+
+.panel__title {
+  font-size: var(--fs-body);
+  font-weight: 700;
+}
+
+.panel__subtitle {
+  margin-top: 2px;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+/* Показатель: подпись, крупное число, пояснение */
+.metric__label {
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}
+
+.metric__value {
+  margin-top: 4px;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+.metric__note {
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-caption);
+}
+
+/* ---------- Заголовок страницы ---------- */
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+}
+
+.page-head__title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.page-head__subtitle {
+  margin-top: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-text);
+}
+
+.page-head__action {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .page-head {
+    padding-top: var(--space-4);
+  }
+
+  .page-head__title {
+    font-size: var(--fs-h2);
+  }
+
+  .page-head__action {
+    width: auto;
+  }
+}
+
+/* ---------- Горизонтальная полоса графика ---------- */
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 104px 1fr 44px;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--fs-small);
+}
+
+.bar__track {
+  height: 16px;
+  border-radius: 4px;
+  background-color: var(--color-bg-raised);
+  overflow: hidden;
+}
+
+/* Длина полосы задаётся в HTML: style="--value: 59%" */
+.bar__fill {
+  display: block;
+  width: var(--value);
+  height: 100%;
+  border-radius: 4px;
+  background: var(--gradient-accent);
+}
+
+.bar__value {
+  font-weight: 600;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .bar {
+    grid-template-columns: 120px 1fr 56px;
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- Пустое состояние ---------- */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 56px var(--space-2);
+  text-align: center;
+}
+
+.empty__icon {
+  color: var(--color-text-secondary);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.empty__title {
+  font-size: var(--fs-h4);
+  font-weight: 700;
+}
+
+.empty__text {
+  max-width: 240px;
+  margin-bottom: var(--space-1);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-small);
+}

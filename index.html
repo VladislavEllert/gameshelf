@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Библиотека — GameShelf</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">Game<span class="logo__accent">Shelf</span></a>
+      <button class="btn btn--secondary btn--sm header__menu-btn" type="button" aria-expanded="false" aria-controls="nav" data-menu-toggle>Меню</button>
+      <a class="user" href="#">
+        <span class="avatar" aria-hidden="true"></span>
+        <span class="user__name">alex_plays</span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Основное меню">
+        <a class="nav__link is-active" href="index.html" aria-current="page">Библиотека</a>
+        <a class="nav__link" href="wishlist.html">Желаемое</a>
+        <a class="nav__link" href="stats.html">Статистика</a>
+        <a class="nav__link nav__link--mobile" href="#">Профиль alex_plays</a>
+        <button class="btn btn--secondary nav__close" type="button" data-menu-toggle>Закрыть меню</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-head__title">Библиотека</h1>
+        <p class="page-head__subtitle" data-games-count data-total="128 игр">128 игр</p>
+      </div>
+      <button class="btn btn--primary page-head__action" type="button">Обновить из Steam</button>
+    </div>
+
+    <div class="tabs library-tabs" role="group" aria-label="Статус игры">
+      <button class="tab is-active" type="button" aria-pressed="true" data-tab="all">Все</button>
+      <button class="tab" type="button" aria-pressed="false" data-tab="progress">В процессе</button>
+      <button class="tab" type="button" aria-pressed="false" data-tab="planned">В планах</button>
+      <button class="tab" type="button" aria-pressed="false" data-tab="done">Пройдена</button>
+    </div>
+
+    <div class="toolbar">
+      <label class="visually-hidden" for="search">Поиск по названию</label>
+      <input class="field" id="search" type="search" placeholder="Поиск по названию" autocomplete="off">
+      <label class="visually-hidden" for="sort">Сортировка</label>
+      <select class="field" id="sort">
+        <option value="recent">Сначала недавно сыгранные</option>
+        <option value="title">По названию</option>
+        <option value="hours">По времени в игре</option>
+      </select>
+      <button class="btn btn--secondary toolbar__filters-btn" type="button" aria-expanded="false" aria-controls="filters" data-filters-toggle>Фильтры</button>
+    </div>
+
+    <div class="library">
+      <form class="panel filters" id="filters" aria-label="Фильтры">
+        <div class="filters__head">
+          <h2 class="panel__title">Фильтры</h2>
+          <button class="filters__reset" type="reset">Сбросить</button>
+        </div>
+        <div>
+          <label class="label" for="genre">Жанр</label>
+          <select class="field" id="genre" name="genre">
+            <option value="">Все жанры</option>
+            <option>RPG</option>
+            <option>Экшен</option>
+            <option>Стратегия</option>
+            <option>Приключение</option>
+            <option>Рогалик</option>
+            <option>Метроидвания</option>
+          </select>
+        </div>
+        <div>
+          <label class="label" for="platform">Платформа</label>
+          <select class="field" id="platform" name="platform">
+            <option value="">Windows, macOS, Linux</option>
+            <option value="windows">Windows</option>
+            <option value="macos">macOS</option>
+            <option value="linux">Linux</option>
+          </select>
+        </div>
+        <div>
+          <label class="label" for="year">Год выхода</label>
+          <select class="field" id="year" name="year">
+            <option value="2010-2026">2010–2026</option>
+            <option value="2020-2026">2020–2026</option>
+            <option value="2015-2019">2015–2019</option>
+            <option value="2010-2014">2010–2014</option>
+          </select>
+        </div>
+        <label class="checkbox">
+          <input type="checkbox" name="played">
+          Только с игровым временем
+        </label>
+        <button class="btn btn--primary btn--block" type="submit">Применить</button>
+      </form>
+
+      <section aria-label="Игры">
+        <ul class="game-grid" data-game-grid>
+          <li data-title="Baldur’s Gate 3" data-status="progress" data-genre="RPG" data-platforms="windows macos" data-year="2023" data-hours="86">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--1 game-card__cover"></span>
+              <h3 class="game-card__title">Baldur’s Gate 3</h3>
+              <span class="game-card__meta">RPG · 2023</span>
+              <span class="game-card__footer"><span class="status">В процессе</span>86 ч</span>
+            </a>
+          </li>
+          <li data-title="Disco Elysium" data-status="done" data-genre="RPG" data-platforms="windows macos" data-year="2019" data-hours="41">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--2 game-card__cover"></span>
+              <h3 class="game-card__title">Disco Elysium</h3>
+              <span class="game-card__meta">RPG · 2019</span>
+              <span class="game-card__footer"><span class="status status--done">Пройдена</span>41 ч</span>
+            </a>
+          </li>
+          <li data-title="Hades" data-status="progress" data-genre="Рогалик" data-platforms="windows macos" data-year="2020" data-hours="64">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--3 game-card__cover"></span>
+              <h3 class="game-card__title">Hades</h3>
+              <span class="game-card__meta">Рогалик · 2020</span>
+              <span class="game-card__footer"><span class="status">В процессе</span>64 ч</span>
+            </a>
+          </li>
+          <li data-title="Outer Wilds" data-status="done" data-genre="Приключение" data-platforms="windows" data-year="2019" data-hours="28">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--4 game-card__cover"></span>
+              <h3 class="game-card__title">Outer Wilds</h3>
+              <span class="game-card__meta">Приключение · 2019</span>
+              <span class="game-card__footer"><span class="status status--done">Пройдена</span>28 ч</span>
+            </a>
+          </li>
+          <li data-title="Cyberpunk 2077" data-status="planned" data-genre="RPG" data-platforms="windows" data-year="2020" data-hours="12">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--5 game-card__cover"></span>
+              <h3 class="game-card__title">Cyberpunk 2077</h3>
+              <span class="game-card__meta">RPG · 2020</span>
+              <span class="game-card__footer"><span class="status status--planned">В планах</span>12 ч</span>
+            </a>
+          </li>
+          <li data-title="Frostpunk" data-status="done" data-genre="Стратегия" data-platforms="windows macos" data-year="2018" data-hours="37">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--6 game-card__cover"></span>
+              <h3 class="game-card__title">Frostpunk</h3>
+              <span class="game-card__meta">Стратегия · 2018</span>
+              <span class="game-card__footer"><span class="status status--done">Пройдена</span>37 ч</span>
+            </a>
+          </li>
+          <li data-title="Control" data-status="planned" data-genre="Экшен" data-platforms="windows" data-year="2019" data-hours="5">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--7 game-card__cover"></span>
+              <h3 class="game-card__title">Control</h3>
+              <span class="game-card__meta">Экшен · 2019</span>
+              <span class="game-card__footer"><span class="status status--planned">В планах</span>5 ч</span>
+            </a>
+          </li>
+          <li data-title="Pentiment" data-status="planned" data-genre="Приключение" data-platforms="windows" data-year="2022" data-hours="0">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--8 game-card__cover"></span>
+              <h3 class="game-card__title">Pentiment</h3>
+              <span class="game-card__meta">Приключение · 2022</span>
+              <span class="game-card__footer"><span class="status status--planned">В планах</span>0 ч</span>
+            </a>
+          </li>
+          <li data-title="Death Stranding" data-status="progress" data-genre="Экшен" data-platforms="windows macos" data-year="2020" data-hours="24">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--1 game-card__cover"></span>
+              <h3 class="game-card__title">Death Stranding</h3>
+              <span class="game-card__meta">Экшен · 2020</span>
+              <span class="game-card__footer"><span class="status">В процессе</span>24 ч</span>
+            </a>
+          </li>
+          <li data-title="Hollow Knight" data-status="done" data-genre="Метроидвания" data-platforms="windows macos linux" data-year="2017" data-hours="52">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--2 game-card__cover"></span>
+              <h3 class="game-card__title">Hollow Knight</h3>
+              <span class="game-card__meta">Метроидвания · 2017</span>
+              <span class="game-card__footer"><span class="status status--done">Пройдена</span>52 ч</span>
+            </a>
+          </li>
+          <li data-title="Dredge" data-status="planned" data-genre="Приключение" data-platforms="windows macos" data-year="2023" data-hours="2">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--3 game-card__cover"></span>
+              <h3 class="game-card__title">Dredge</h3>
+              <span class="game-card__meta">Приключение · 2023</span>
+              <span class="game-card__footer"><span class="status status--planned">В планах</span>2 ч</span>
+            </a>
+          </li>
+          <li data-title="The Witcher 3" data-status="done" data-genre="RPG" data-platforms="windows" data-year="2015" data-hours="146">
+            <a class="game-card" href="game.html">
+              <span class="cover cover--4 game-card__cover"></span>
+              <h3 class="game-card__title">The Witcher 3</h3>
+              <span class="game-card__meta">RPG · 2015</span>
+              <span class="game-card__footer"><span class="status status--done">Пройдена</span>146 ч</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="panel empty" data-empty hidden>
+          <span class="empty__icon" aria-hidden="true">✕</span>
+          <h2 class="empty__title">Ничего не найдено</h2>
+          <p class="empty__text">Измените запрос или сбросьте выбранные фильтры.</p>
+          <button class="btn btn--primary" type="button" data-reset-all>Сбросить фильтры</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 GameShelf · данные Steam</div>
+  </footer>
+</body>
+</html>
